@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container">
+        <div style="overflow:auto;height:450px;">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Student Id</th>
+                <th scope="col">Student Name</th>
+                <th scope="col">Student Email</th>
+                <th scope="col">Student Mobile</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr scope="row" th:each="tempStudent : ${stu_list}">
+                <td th:text="${tempStudent.student_id}"></td>
+                <td th:text="${tempStudent.student_name}"></td>
+                <td th:text="${tempStudent.email}"></td>
+                <td th:text="${tempStudent.mobilenumber}"></td>
+                <td>
+                    <a class="btn btn-success" th:href="@{/showFormForUpdate(studentId=${tempStudent.student_id})}"
+                    >Update</a>
+                </td>
+
+                <td>
+                    <a  class="btn btn-danger" th:href="@{/delete(studentId=${tempStudent.student_id})}"
+                        onclick="if (!(confirm('Are you sure ?'))) return false"
+                    >Delete</a>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <br>
+        <br>
+        <center><a class="btn btn-primary" th:href="@{/showFormForAdd}">Register</a></center>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+
+    <script type="text/javascript" th:src="@{/js/validations.js}"></script>
+</head>
+<body>
+
+
+<div class="container">
+    <form action="#" th:action="@{/save}"
+          th:object="${studentObj}" method="POST" onsubmit="return validateForm()">
+        <input type="hidden" th:field="*{student_id}"/>
+
+        <h2 th:if="${#fields.hasErrors('student_name')}"  th:errors="*{student_name}" class="error" >kk</h2>
+        Student Name : <input type="text" id="student_name" name="student_name" onkeypress="return onlyAllowAlphabets(event)" class="form-control" th:field="*{student_name}"/><br>
+
+
+        <h2 th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error" >kl</h2>
+        Student Email : <input type="text" id="student_email" name="student_email" onblur="validateEmail(this)" class="form-control" th:field="*{email}"><p id="errorEmail"><p><br>
+
+        <h2 th:if="${#fields.hasErrors('mobilenumber')}" th:errors="*{mobilenumber}" class="error" >kl</h2>
+        Student Mobile : <input type="text" id="student_mobile" name="student_mobile" onkeypress="return onlyAllowNumber(event)" onblur="validateMobileNumber(this)" class="form-control" th:field="*{mobilenumber}"><p id="errorMobile"><p><br>
+
+
+        Password : <input type="text" class="form-control" id="student_password" name="student_password" onblur="testPassword(this)" th:field="*{password}"><p id="errorPassword"></p>
+
+        <button type="submit">Save</button>
+
+    </form>
+
+    <a class="btn btn-success" th:href="@{/list}">Back to Event List</a>
+</div>
+
+
+</body>
+</html>
